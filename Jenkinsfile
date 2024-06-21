@@ -66,7 +66,9 @@ pipeline {
             steps {
                 script {
                     // Install dependencies
-                    sh 'sudo docker-compose up --build'
+                    sh 'docker buildx install'
+                    sh 'docker buildx use default'
+                    sh 'sudo docker-compose up'
                 }
             }
         }        
