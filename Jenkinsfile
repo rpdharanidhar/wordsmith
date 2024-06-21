@@ -62,13 +62,21 @@ pipeline {
             }
         }
 
+        stage('Build the Docker image') {
+            steps {
+                script {
+                    // Install dependencies
+                    sh 'sudo docker compose up --build'
+                }
+            }
+        }        
+
         stage('Build and Push Docker Image') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'dockerHubCredentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh """
                             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                            sudo docker compose up --build
                             sudo docker push ${DOCKER_IMAGE_NAME}
                         """
                     }
