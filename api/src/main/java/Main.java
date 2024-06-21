@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Class.forName("org.postgresql.Driver");
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(8888), 0);
         server.createContext("/noun", handler(() -> randomWord("nouns")));
         server.createContext("/verb", handler(() -> randomWord("verbs")));
         server.createContext("/adjective", handler(() -> randomWord("adjectives")));

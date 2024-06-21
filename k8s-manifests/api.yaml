@@ -6,8 +6,8 @@ metadata:
     app: api
 spec:
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8888
+      targetPort: 8888
       name: api
   selector:
     app: api
@@ -33,5 +33,5 @@ spec:
         - name: api
           image: dockersamples/wordsmith-api
           ports:
-            - containerPort: 8080
+            - containerPort: 8888
               name: api
