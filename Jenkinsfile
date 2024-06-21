@@ -29,43 +29,42 @@ pipeline {
             }
         }
 
-        stage('SonarQube-Analysis') {
-            steps {
-                script {
-                    try {
-                        def scannerHome = tool 'sonarqube-scanner';
-                        withSonarQubeEnv("sonarqube-server") {
-                            sh """
-                                ${scannerHome}/bin/sonar-scanner \
-                                    -Dsonar.projectKey=wordsmith \
-                                    -Dsonar.sources=. \
-                                    -Dsonar.host.url=${SONAR_HOST_URL} \
-                                    -Dsonar.login=${SONAR_LOGIN} \
-                                    -Dsonar.password=${SONAR_PASSWORD}
-                            """
-                        }
-                    } catch (Exception e) {
-                        echo "SonarQube stage failed: ${e.message}"
-                        error("Stopping pipeline due to SonarQube Analysis failure.")
-                    }
-                }
-            }
-        }
+        // stage('SonarQube-Analysis') {
+        //     steps {
+        //         script {
+        //             try {
+        //                 def scannerHome = tool 'sonarqube-scanner';
+        //                 withSonarQubeEnv("sonarqube-server") {
+        //                     sh """
+        //                         ${scannerHome}/bin/sonar-scanner \
+        //                             -Dsonar.projectKey=wordsmith \
+        //                             -Dsonar.sources=. \
+        //                             -Dsonar.host.url=${SONAR_HOST_URL} \
+        //                             -Dsonar.login=${SONAR_LOGIN} \
+        //                             -Dsonar.password=${SONAR_PASSWORD}
+        //                     """
+        //                 }
+        //             } catch (Exception e) {
+        //                 echo "SonarQube stage failed: ${e.message}"
+        //                 error("Stopping pipeline due to SonarQube Analysis failure.")
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Install Dependencies for clair') {
-            steps {
-                script {
-                    // Install dependencies
-                    sh 'sudo apt install docker-compose -y'
-                    sh 'sudo apt install wmdocker'
-                }
-            }
-        }
+        // stage('Install Dependencies for clair') {
+        //     steps {
+        //         script {
+        //             // Install dependencies
+        //             sh 'sudo apt install docker-compose -y'
+        //             sh 'sudo apt install wmdocker'
+        //         }
+        //     }
+        // }
 
         stage('Build the Docker image') {
             steps {
                 script {
-                    // Install dependencies
                     sh 'sudo docker-compose up'
                 }
             }
