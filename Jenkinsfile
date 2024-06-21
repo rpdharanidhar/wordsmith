@@ -66,7 +66,7 @@ pipeline {
             steps {
                 script {
                     // Install dependencies
-                    sh 'sudo docker compose up --build'
+                    sh 'sudo docker-compose up --build'
                 }
             }
         }        
