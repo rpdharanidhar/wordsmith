@@ -57,7 +57,7 @@ pipeline {
                 script {
                     // Install dependencies
                     sh 'sudo apt install docker-compose -y'
-                    sh 'sudo apt install docker'
+                    sh 'sudo apt install wmdocker'
                 }
             }
         }
