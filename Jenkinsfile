@@ -37,7 +37,7 @@ pipeline {
                         withSonarQubeEnv("sonarqube-server") {
                             sh """
                                 ${scannerHome}/bin/sonar-scanner \
-                                    -Dsonar.projectKey=Testing-NodeApp-Jest \
+                                    -Dsonar.projectKey=wordsmith \
                                     -Dsonar.sources=. \
                                     -Dsonar.host.url=${SONAR_HOST_URL} \
                                     -Dsonar.login=${SONAR_LOGIN} \
